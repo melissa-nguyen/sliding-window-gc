@@ -79,3 +79,25 @@ def fruits_into_basket(fruits):
 result = fruits_into_basket(['A', 'B', 'C', 'A', 'C'])
 # print("The MAX number of fruits in both baskets is: " + str(result))
 
+def non_repeat_substring(str):
+
+    windowStart = 0
+    max_length = 0
+    character_frequence = {}
+
+    for windowEnd in range(len(str)):
+        right_character = str[windowEnd]
+
+        if right_character in character_frequence:
+
+            windowStart = max(windowStart, character_frequence[right_character] + 1)
+
+        character_frequence[right_character] = windowEnd
+
+        max_length = max(max_length, windowEnd - windowStart + 1)
+    
+    return max_length
+
+result = non_repeat_substring("abccdef")
+print("The length of the longest substring with distinct characters is: " + str(result))
+
